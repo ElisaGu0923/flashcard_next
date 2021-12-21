@@ -48,7 +48,7 @@ export default function Home({
       </section> */}
       {session ?
         `signed in` : `not signed in`}
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={() => signIn('', { callbackUrl: '/dashboard' })}>Sign in</button>
     </Layout>
   )
 }
