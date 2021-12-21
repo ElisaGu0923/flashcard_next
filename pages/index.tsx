@@ -1,9 +1,15 @@
+// next
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
+// libraries
+import { useSession, signIn, signOut } from "next-auth/react";
+// components
+import Layout, { siteTitle } from '../components/layout'
+// styles
+import utilStyles from '../styles/utils.module.css'
+// mock
+import { getSortedPostsData } from '../lib/posts'
 
 export default function Home({
   allPostsData
@@ -14,12 +20,13 @@ export default function Home({
     id: string
   }[]
 }) {
+  const { data: session } = useSession();
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      {/* <section className={utilStyles.headingMd}>
         <p>[Your Self Introduction]</p>
         <p>
           (This is a sample website - you’ll be building a site like this in{' '}
@@ -38,7 +45,10 @@ export default function Home({
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
+      {session ?
+        `signed in` : `not signed in`}
+      <button onClick={() => signIn()}>Sign in</button>
     </Layout>
   )
 }
