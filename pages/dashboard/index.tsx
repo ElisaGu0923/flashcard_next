@@ -40,7 +40,7 @@ const Dashboard: React.FunctionComponent = () => {
         return <>
             <div>Dashboard Signed in as {session.user.email}</div>
             <div>Welcome {session.user.name}</div>
-            <button onClick={getDecks}>Get Decks</button>
+            <button>Get Decks</button>
             <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
         </>
     }
