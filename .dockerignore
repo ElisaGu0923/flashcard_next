@@ -1,0 +1,4 @@
+node_modules/
+# package-lock.json
+.next/
+client_secret_238071177378-nr6a41i2kvdjr8e45k1hr8brnggev0nn.apps.googleusercontent.com.json
