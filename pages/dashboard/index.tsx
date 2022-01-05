@@ -5,30 +5,24 @@ import { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 const Dashboard: React.FunctionComponent = () => {
     const [email, setEmail] = useState<string | undefined>(undefined);
+    const [decksCount, setDecksCount] = useState<number>(0);
     const { data: session, status } = useSession();
 
-    // const getDecks = () => {
-    //     return new Promise((resolve, reject) => {
-    //         var mysql = require("mysql2");
-    //         var connection = mysql.createConnection({
-    //             host: process.env.HOST,
-    //             user: process.env.ROOTUSER,
-    //             database: process.env.DATABASE,
-    //             password: process.env.PASSWORD,
-    //         });
-    //         connection.query(`SELECT * FROM decks WHERE creator_id= "${session.user.id}"`, (err, result) => {
-    //             console.log(result);
-    //             if (result && result.length > 0) {
-    //                 const username = result[0].username;
-    //                 resolve();
-    //             } else {
-    //                 console.log("null");
-    //                 resolve(null);
-    //             }
-    //         })
-
-    //     })
-    // }
+    const fetchDecks = async () => {
+        const response = await fetch('/api/getDecks', {
+            method: 'POST',
+            body: JSON.stringify({ email: session.user.email })
+        })
+        if (response.status === 200) {
+            if (response.statusText != 'OK') {
+                console.log(response.statusText);
+            } else {
+                const b = await response.json();
+                console.log(b.length);
+                setDecksCount(b.length);
+            }
+        }
+    }
 
     useEffect(() => {
         if (session) {
@@ -40,7 +34,8 @@ const Dashboard: React.FunctionComponent = () => {
         return <>
             <div>Dashboard Signed in as {session.user.email}</div>
             <div>Welcome {session.user.name}</div>
-            <button>Get Decks</button>
+            <button onClick={fetchDecks}>Get Decks</button>
+            <div>Decks Count: {decksCount}</div>
             <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
         </>
     }
