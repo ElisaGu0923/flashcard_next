@@ -1,0 +1,9 @@
+docker run -d -p 3003:3000 --name c1 flashcard // start new container, open on 3003 of local machine
+docker start c1 // start stopped container
+docker stop c1
+
+docker run --name sql-test -e MYSQL_ROOT_PASSWORD=password -p 6000:3306 -d mysql/mysql-server:latest
+
+// sql database:
+docker start flashcard_mysql //password=password
+docker stop flashcard_mysql
