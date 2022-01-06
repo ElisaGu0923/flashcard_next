@@ -19,8 +19,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
                     console.log('error');
                     console.log(err);
                 }
-                console.log('200');
-                // console.log(result[0].count);
+                console.log(result);
                 res.status(200).json(result);
             });
     }
