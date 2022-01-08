@@ -1,6 +1,10 @@
-display decks
+delete decks
+theme
 
 lower priority:
 improve sign up redirect experience
 change password
 change username
+use connection as export
+create multiple cards at once
+email
