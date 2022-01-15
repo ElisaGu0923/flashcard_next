@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+Technologies: Next.JS, React.JS, TypeScript, Material-UI, NextAuth
