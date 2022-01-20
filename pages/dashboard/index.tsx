@@ -3,14 +3,16 @@ import { useState, useEffect } from "react";
 // next
 import { useRouter } from "next/router";
 // libraries
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 // material ui
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
+// component
+import { Button, DeckManager, ProfileCard } from "../../components";
 
 export type Deck = {
     id: number,
@@ -76,9 +78,26 @@ const Dashboard: React.FunctionComponent = () => {
 
     if (status === "authenticated") {
         return <>
-            <div>Dashboard Signed in as {session.user.email}</div>
-            <div>Welcome {session.user.name}</div>
-            {decks ? decks.map((deck) => <div key={deck.id}><span>{deck.deck_name}</span><button onClick={() => { router.push({ pathname: '/updateDeck', query: { id: deck.id } }) }}>Edit</button><button onClick={() => { setDeck(deck); setOpen(true); }}>Delete</button></div>) : <div>Create your first deck</div>}
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <ProfileCard user={session.user} />
+                </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+                {decks ?
+                    <>
+                        {decks.map((deck) => (
+                            <Grid item xs={6}>
+                                <DeckManager deck={deck} setDeck={setDeck} setOpen={setOpen} />
+                            </Grid>
+                        )
+                        )}
+                        <Grid item xs={6}>
+                            <button onClick={() => router.push('/newDeck')}>Create a new deck of cards</button>
+                        </Grid>
+                    </>
+                    : <div>Create your first deck</div>}
+            </Grid>
             <button onClick={() => router.push('/newDeck')}>Create a new deck of cards</button>
             <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
             {open ? <div>
@@ -106,7 +125,7 @@ const Dashboard: React.FunctionComponent = () => {
     }
 
     return (<div>Dashboard Not signed in
-        <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
+        <Button variant='contained' onClick={() => signIn('', { callbackUrl: '/dashboard' })}>Sign in</Button>
     </div>)
 }
 

@@ -4,26 +4,35 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 // libraries
 import { useSession, signIn, signOut } from "next-auth/react";
+// material ui
+import { Grid } from '@mui/material';
 // components
 import Layout, { siteTitle } from '../components/layout'
-import { Loading } from '../components';
+import { AppProfile, Button, Loading, TopNav } from '../components';
 // styles
-import utilStyles from '../styles/utils.module.css'
-// mock
-import { getSortedPostsData } from '../lib/posts'
+import useStyles from './index.styles';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Home() {
-  const { data: session } = useSession();
   const router = useRouter();
+  const { classes } = useStyles();
 
   return (
-    <Layout home>
+    <>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      {/* <button onClick={submitSignup}>Sign up</button> */}
-      <button onClick={() => router.push('/register')}>Sign up</button>
-      <button onClick={() => signIn('', { callbackUrl: '/dashboard' })}>Sign in</button>
-    </Layout>
+      <TopNav />
+      <AppProfile />
+      <Grid container direction='row' justifyContent='center' alignItems='center' spacing={6}>
+        <Grid item>
+          <Button variant='outlined' onClick={() => router.push('/register')}>Sign up</Button>
+        </Grid>
+        <Grid item>
+          <Button variant='contained' onClick={() => signIn('', { callbackUrl: '/dashboard' })}>Sign in</Button>
+        </Grid>
+      </Grid>
+    </>
   )
 }
