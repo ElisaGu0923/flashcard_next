@@ -21,18 +21,25 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{siteTitle}</title>
+        <title>MEMO</title>
       </Head>
       <TopNav />
-      <AppProfile />
-      <Grid container direction='row' justifyContent='center' alignItems='center' spacing={6}>
+      {/* <AppProfile /> */}
+      {/* <Grid container direction='row' justifyContent='center' alignItems='center' spacing={6} className={classes.mainContainer}>
         <Grid item>
           <Button variant='outlined' onClick={() => router.push('/register')}>Sign up</Button>
         </Grid>
         <Grid item>
           <Button variant='contained' onClick={() => signIn('', { callbackUrl: '/dashboard' })}>Sign in</Button>
         </Grid>
-      </Grid>
+      </Grid> */}
+      <div className={classes.mainContainer}>
+        <div className={classes.content}>
+          <h1>MEMO</h1>
+          <h2>We Can Achieve Greater.</h2>
+          <div>Powered by Next.JS, React.JS, Material UI</div>
+        </div>
+      </div>
     </>
   )
 }
