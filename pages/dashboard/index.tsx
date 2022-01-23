@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 // next
 import { useRouter } from "next/router";
-// libraries
+// 3rd party libraries
 import { useSession, signIn, signOut } from "next-auth/react";
 // material ui
 import Dialog from '@mui/material/Dialog';
@@ -12,7 +12,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
 // component
-import { Button, DeckManager, ProfileCard } from "../../components";
+import { Button, DeckManager, MyLayout, ProfileCard } from "../../components";
+// styles
+import useStyles from './styles';
 
 export type Deck = {
     id: number,
@@ -24,6 +26,7 @@ export type Deck = {
 
 const Dashboard: React.FunctionComponent = () => {
     const router = useRouter();
+    const { classes } = useStyles();
     const [open, setOpen] = useState<boolean>(false);
     const [refresh, setRefresh] = useState<boolean>(false);
     const [email, setEmail] = useState<string | undefined>(undefined);
@@ -77,8 +80,8 @@ const Dashboard: React.FunctionComponent = () => {
     }, [session, refresh]);
 
     if (status === "authenticated") {
-        return <>
-            <Grid container spacing={2}>
+        return <MyLayout>
+            <Grid container spacing={2} className={classes.container}>
                 <Grid item xs={4}>
                     <ProfileCard user={session.user} />
                 </Grid>
@@ -121,7 +124,7 @@ const Dashboard: React.FunctionComponent = () => {
                     </DialogActions>
                 </Dialog>
             </div> : null}
-        </>
+        </MyLayout>
     }
 
     return (<div>Dashboard Not signed in

@@ -7,7 +7,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 // material ui
 import { Grid } from '@mui/material';
 // components
-import Layout, { siteTitle } from '../components/layout'
 import { AppProfile, Button, Loading, TopNav } from '../components';
 // styles
 import useStyles from './index.styles';
