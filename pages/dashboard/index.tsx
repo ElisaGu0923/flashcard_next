@@ -101,8 +101,6 @@ const Dashboard: React.FunctionComponent = () => {
                     </>
                     : <div>Create your first deck</div>}
             </Grid>
-            <button onClick={() => router.push('/newDeck')}>Create a new deck of cards</button>
-            <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
             {open ? <div>
                 <Dialog
                     open={open}

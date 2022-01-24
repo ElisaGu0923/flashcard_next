@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // next
 import Image from 'next/image';
+// 3rd party library
+import { signOut } from "next-auth/react";
 // material ui
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -53,7 +55,7 @@ const MyLayout = ({
                             <ListItemText primary={"Daily Quest"} />
                         </ListItem>
                         <Divider />
-                        <ListItem button key="logout">
+                        <ListItem button key="logout" onClick={() => signOut({ callbackUrl: '/' })}>
                             <ListItemIcon><LogoutIcon /></ListItemIcon>
                             <ListItemText primary={"Logout"} />
                         </ListItem>
