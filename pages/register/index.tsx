@@ -1,9 +1,16 @@
 import * as React from "react";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+// next
 import { redirect } from "next/dist/server/api-utils";
+// next-auth
+import { signIn } from "next-auth/react";
+// material ui
+import Button from '@mui/material/Button';
+// styles
+import useStyles from './styles';
 
 const Register: React.FunctionComponent = () => {
+    const { classes } = useStyles();
     const [email, setEmail] = useState<string | undefined>(undefined);
     const [password, setPassword] = useState<string | undefined>(undefined);
     const [username, setUserName] = useState<string | undefined>(undefined);
@@ -40,46 +47,50 @@ const Register: React.FunctionComponent = () => {
         }
     }
 
-    return (<div>
-        <div>Register</div>
-        <div>
-            <label>Username:</label>
-            <input
-                type="text"
-                name="userName"
-                value={username}
-                onChange={(e) => {
-                    setUserName(e.target.value);
-                }}
-            />
+    return (
+        <div className={classes.main}>
+            <div className={classes.form}>
+                <h1>Register</h1>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        name="userName"
+                        value={username}
+                        onChange={(e) => {
+                            setUserName(e.target.value);
+                        }}
+                    />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        name="movieName"
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
+                    />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        name="review"
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                    />
+                </div>
+                <div className={classes.btnContainer}>
+                    <Button variant='outlined' onClick={submitSignUp}>Sign Up</Button>
+                </div>
+                {message}
+            </div>
         </div>
-        <div>
-            <label>Email:</label>
-            <input
-                type="email"
-                name="movieName"
-                value={email}
-                onChange={(e) => {
-                    setEmail(e.target.value);
-                }}
-            />
-        </div>
-        <div>
-            <label>Password:</label>
-            <input
-                type="password"
-                name="review"
-                value={password}
-                onChange={(e) => {
-                    setPassword(e.target.value);
-                }}
-            />
-        </div>
-        <div>
-            <button onClick={submitSignUp}>Sign Up</button>
-        </div>
-        {message}
-    </div>)
+    )
 }
 
 export default Register;

@@ -8,9 +8,11 @@ const useStyles = makeStyles()((theme) => ({
         position: 'relative'
     },
     deleteBtn: {
-        color: '#ff5f5f',
-        position: 'absolute',
-        right: '5px'
+        '&.MuiButtonBase-root': {
+            position: 'absolute',
+            right: '5px',
+            color: '#ff5f5f',
+        }
     },
     question: {
         borderBottom: '1px solid #f3f3f3',

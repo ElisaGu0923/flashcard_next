@@ -2,7 +2,7 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()((theme) => ({
     root: {
-        padding: "15px 10px 15px 10px"
+        padding: "15px 20px 15px"
     },
     username: {
         textTransform: "uppercase",

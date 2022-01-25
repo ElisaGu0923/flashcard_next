@@ -13,7 +13,9 @@ const useStyles = makeStyles()((theme) => ({
     qcard: {
         backgroundColor: '#f2aa4cff',
         color: '#101820FF',
-        borderRadius: '6px 6px 0 0',
+        '&.MuiPaper-root': {
+            borderRadius: '6px 6px 0 0',
+        },
         padding: '50px',
         fontSize: '30px',
     },

@@ -12,7 +12,8 @@ const useStyles = makeStyles()((theme) => ({
         justifyContent: 'space-between',
     },
     mainContainer: {
-        padding: "30px 50px"
+        padding: "30px 50px",
+        backgroundColor: 'rgb(233, 241, 243)'
     }
 }));
 

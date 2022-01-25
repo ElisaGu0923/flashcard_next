@@ -132,6 +132,8 @@ const Dashboard: React.FunctionComponent = () => {
                 </Dialog>
             </div> : null}
         </MyLayout>
+    } else if (status === "loading") {
+        return (<div>Loading...</div>)
     }
 
     return (<div>Dashboard Not signed in
