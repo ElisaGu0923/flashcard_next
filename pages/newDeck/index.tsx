@@ -4,18 +4,23 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 // nextauth
 import { useSession } from 'next-auth/react';
-// type
-import { AlertColor } from '@mui/material/Alert';
+// material ui
+import Button from '@mui/material/Button';
 // components
 import Toast from '../../components/Toast';
+// styles
+import useStyles from './styles';
+// type
+import { AlertColor } from '@mui/material/Alert';
 
 const NewDeck: React.FunctionComponent = () => {
+    const router = useRouter();
+    const { classes } = useStyles();
+    const { data: session } = useSession();
     const [deck_name, setDeckName] = useState<string>('');
     const [message, setMessage] = useState<string | undefined>(undefined);
     const [showToast, setShowToast] = useState<boolean>(false);
     const [alertType, setAlertType] = useState<AlertColor>('success');
-    const { data: session } = useSession();
-    const router = useRouter();
 
     const createDeck = async () => {
         const response = await fetch('/api/createDeck', {
@@ -41,20 +46,18 @@ const NewDeck: React.FunctionComponent = () => {
     }
 
     return (
-        <div>
-            <div>Create New Deck of Cards</div>
-            <div>
-                <label>Enter the name of your new deck</label>
-                <input
-                    type="text"
-                    name="deckName"
-                    value={deck_name}
-                    onChange={(e) => {
-                        setDeckName(e.target.value);
-                    }}
-                />
-            </div>
-            <button disabled={!deck_name} onClick={createDeck}>Create!</button>
+        <div className={classes.container}>
+            <h1>Create New Deck of Cards</h1>
+            <label>Enter a name for your new deck of cards</label>
+            <input
+                type="text"
+                name="deckName"
+                value={deck_name}
+                onChange={(e) => {
+                    setDeckName(e.target.value);
+                }}
+            />
+            <Button color='secondary' variant='contained' disabled={!deck_name} onClick={createDeck}>Create!</Button>
             <Toast open={showToast} setOpen={setShowToast} type={alertType} message={message} />
         </div>
     )

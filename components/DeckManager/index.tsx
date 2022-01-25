@@ -28,7 +28,7 @@ const DeckManager: React.FunctionComponent<IDeckManagerProps> = ({ deck, setDeck
         <div className={classes.title}>{deck.deck_name}</div>
         <div>
             <Button className={classes.learnBtn} variant="contained" onClick={() => { router.push({ pathname: '/learnDeck', query: { id: deck.id } }) }}>Learn</Button>
-            <Button onClick={() => { router.push({ pathname: '/updateDeck', query: { id: deck.id } }) }}>Edit</Button>
+            <Button className={classes.editBtn} onClick={() => { router.push({ pathname: '/updateDeck', query: { id: deck.id } }) }}>Edit</Button>
         </div>
     </Paper>)
 }

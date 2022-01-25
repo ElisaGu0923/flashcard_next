@@ -4,6 +4,7 @@ const useStyles = makeStyles()((theme) => ({
     paper: {
         borderRadius: '6px',
         padding: '10px',
+        minHeight: '130px'
     },
     deleteBtn: {
         color: '#ff5f5f',
@@ -16,6 +17,9 @@ const useStyles = makeStyles()((theme) => ({
     learnBtn: {
         padding: '5px 50px',
         backgroundColor: `${theme.palette.secondary.main}`
+    },
+    editBtn: {
+        color: '#247489'
     }
 }));
 

@@ -10,7 +10,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+// icons
+import AddIcon from '@mui/icons-material/Add';
 // component
 import { Button, DeckManager, MyLayout, ProfileCard } from "../../components";
 // styles
@@ -96,7 +100,12 @@ const Dashboard: React.FunctionComponent = () => {
                         )
                         )}
                         <Grid item xs={6}>
-                            <button onClick={() => router.push('/newDeck')}>Create a new deck of cards</button>
+                            <Paper className={classes.paper} variant="outlined">
+                                <IconButton className={classes.createBtn} onClick={() => router.push('/newDeck')}>
+                                    <AddIcon className={classes.icon}></AddIcon>
+                                </IconButton>
+                            </Paper>
+                            {/* <button onClick={() => router.push('/newDeck')}>Create a new deck of cards</button> */}
                         </Grid>
                     </>
                     : <div>Create your first deck</div>}

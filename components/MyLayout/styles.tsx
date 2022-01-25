@@ -4,7 +4,8 @@ const useStyles = makeStyles()((theme) => ({
     navContainer: {
         boxSizing: 'border-box',
         padding: '20px 80px',
-        backgroundColor: '#f3f3f3',
+        // backgroundColor: '#f3f3f3',
+        backgroundColor: '#eaeaea',
         width: '100%',
         zIndex: '1',
         display: 'flex',

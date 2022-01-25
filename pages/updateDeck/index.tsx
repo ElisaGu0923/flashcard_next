@@ -2,11 +2,13 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
+// components
+import { CardManager, Toast } from '../../components';
+// styles
+import useStyles from './styles';
 // type
 import { Deck } from '../dashboard';
 import { AlertColor } from '@mui/material/Alert';
-// components
-import Toast from '../../components/Toast';
 
 export type Card = {
     id: number,
@@ -17,6 +19,7 @@ export type Card = {
 
 const UpdateDeck: React.FunctionComponent = () => {
     const router = useRouter();
+    const { classes } = useStyles();
     const [deck_name, setDeckName] = useState<string | undefined>(undefined);
     const [deck, setDeck] = useState<Deck | undefined>(undefined);
     const [cards, setCards] = useState<Card[] | undefined>(undefined);
@@ -121,8 +124,6 @@ const UpdateDeck: React.FunctionComponent = () => {
                 setMessage('Something went wrong');
             } else {
                 setRefresh(!refresh);
-                setQuestion(undefined);
-                setAnswer(undefined);
             }
         }
     }
@@ -141,10 +142,10 @@ const UpdateDeck: React.FunctionComponent = () => {
     }, [refresh])
 
     return (
-        <div>
-            <div>Update Deck</div>
-            <div>
-                <label>Change the name of this deck</label>
+        <div className={classes.mainContainer}>
+            <h2>Update Deck</h2>
+            <div className={classes.nameField}>
+                <label>Change the name of this deck: </label>
                 <input
                     type="text"
                     name="deckName"
@@ -154,7 +155,7 @@ const UpdateDeck: React.FunctionComponent = () => {
                     }}
                 />
             </div>
-            {cards && cards.map(card => <><div>{card.question}</div><div>{card.answer}</div><div><button onClick={() => deleteCard(card.id)}>Delete Card</button></div></>)}
+            {cards && cards.map(card => <div key={card.id} className={classes.cardContainer}><CardManager card={card} deleteCard={deleteCard}></CardManager></div>)}
             <label>Enter Question</label>
             <input
                 type="text"

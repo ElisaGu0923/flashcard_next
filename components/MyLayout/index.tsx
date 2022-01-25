@@ -29,7 +29,7 @@ const MyLayout = ({
     const { classes } = useStyles();
     const [sidebar, setSidebar] = useState<boolean>(false);
     return (
-        <>
+        <div style={{ backgroundColor: '#e9f1f3', height: '100vh' }}>
             <div className={classes.navContainer}>
                 <Image src='/icons/flashCardsIcon.png' width="40px" height="40px" />
                 <IconButton onClick={() => setSidebar(true)}><MenuIcon /></IconButton>
@@ -62,7 +62,7 @@ const MyLayout = ({
                     </List>
                 </Box>
             </Drawer>
-        </>
+        </div>
     )
 }
 
