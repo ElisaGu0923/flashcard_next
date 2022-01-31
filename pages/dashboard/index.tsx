@@ -105,10 +105,18 @@ const Dashboard: React.FunctionComponent = () => {
                                     <AddIcon className={classes.icon}></AddIcon>
                                 </IconButton>
                             </Paper>
-                            {/* <button onClick={() => router.push('/newDeck')}>Create a new deck of cards</button> */}
                         </Grid>
                     </>
-                    : <div>Create your first deck</div>}
+
+                    :
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper} variant="outlined">
+                            <IconButton className={classes.createBtn} onClick={() => router.push('/newDeck')}>
+                                <AddIcon className={classes.icon}></AddIcon>
+                            </IconButton>
+                        </Paper>
+                    </Grid>
+                }
             </Grid>
             {open ? <div>
                 <Dialog
