@@ -1,13 +1,6 @@
-var mysql = require("mysql2");
 // types
 import { NextApiRequest, NextApiResponse } from 'next';
-
-var connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.ROOTUSER,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-});
+import { connection } from './connection';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
     const httpMethod: string = req.method;

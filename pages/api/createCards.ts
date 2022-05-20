@@ -1,23 +1,6 @@
-// const items = [
-//     { name: 'alpha', description: 'describes alpha', value: 1 },
-//     ...
-// ];
-
-// db.query(
-//     'INSERT INTO my_table (name, description, value) VALUES ?',
-//     [items.map(item => [item.name, item.description, item.value])],
-//     (error, results) => {...}
-// );
-var mysql = require("mysql2");
 // types
 import { NextApiRequest, NextApiResponse } from 'next';
-
-var connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.ROOTUSER,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-});
+import { connection } from './connection';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
     const httpMethod: string = req.method;
