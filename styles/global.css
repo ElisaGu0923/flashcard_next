@@ -8,9 +8,6 @@ body {
 	line-height: 1.6;
 	font-size: 18px;
 }
-* {
-	box-sizing: border-box;
-}
 
 a {
 	color: #0070f3;
